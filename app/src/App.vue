@@ -8,6 +8,7 @@
       <v-container>
         <v-card>
           <bookings-table/>
+          <rooms-table/>
         </v-card>
       </v-container>
     </v-main>
@@ -16,4 +17,5 @@
 
 <script setup>
 import BookingsTable from '@/components/BookingsTable.vue';
+import RoomsTable from '@/components/RoomsTable.vue';
 </script>
