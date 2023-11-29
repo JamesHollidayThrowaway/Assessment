@@ -13,11 +13,29 @@ const example = (change, store) => {
   }
 };
 
+const autoRoomCreation = (change, store) => {
+  // Make sure its only on booking requests/changes
+  if (change.ref.path.startsWith('bookings/')) {
+    // get the Rooms collection
+    const collection = store.getCollection({ path: 'rooms' });
+    // Creates a array for the room titles
+    let titleArr = [];
+    for (const item of collection) {
+      titleArr.push(item.document.title);
+    }
+    // Checks if the room title is in the array - if it is not then we push it to the rooms collection
+    if (!titleArr.includes(change.document.room.title)) {
+      store.setDoc({ path: 'rooms/' + change.document.room.title }, { title: change.document.room.title, capacity: 'Waiting for Value' });
+    }
+  }
+};
+
 /**
  * Any function exported here will be called whenever there is a data change in the store.
  *
  * @type {Object<string, ChangeFunc>}
  */
 module.exports = {
-  example
+  example,
+  autoRoomCreation,
 };
