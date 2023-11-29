@@ -77,6 +77,13 @@ export default {
         ref: {path: 'bookings'},
         document: this.booking
       });
+      // Send a request to get all the bookings to re-populate the bookings table after adding one.
+      send({
+        type: 'get-documents',
+        ref: {
+          path: 'bookings'
+        }
+      });
       this.open = false;
     }
   }
