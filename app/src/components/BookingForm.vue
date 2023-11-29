@@ -84,6 +84,13 @@ export default {
           path: 'bookings'
         }
       });
+      // Get the rooms again (There might be a new room to add to the table after a room is creating through a booking)
+      send({
+        type: 'get-documents',
+        ref: {
+          path: 'rooms'
+        }
+      });
       this.open = false;
     }
   }
